@@ -26,14 +26,30 @@ function popuniTabelu() {
 
         tdId.textContent = artikal.id
         tdNaziv.textContent = artikal.naziv
-        tdCena.textContent = artikal.cena 
+        tdCena.textContent = artikal.cena
 
         tr.appendChild(tdId)
         tr.appendChild(tdNaziv)
         tr.appendChild(tdCena)
 
+        tr.addEventListener("click", function () {
+            prikaziDetalje(artikal)
+        })
+
         tbody.appendChild(tr)
     }
 }
+function prikaziDetalje(artikal) {
+    let detaljNaziv = document.querySelector("#detalj-naziv")
+    let detaljCena = document.querySelector("#detalj-cena")
+    let detaljOpis = document.querySelector("#detalj-opis")
 
+    detaljNaziv.textContent = ""
+    detaljCena.textContent = ""
+    detaljOpis.textContent = ""
+
+    detaljNaziv.textContent = artikal.naziv
+    detaljCena.textContent = artikal.cena
+    detaljOpis.textContent = artikal.opis
+}
 popuniTabelu()
