@@ -1,0 +1,84 @@
+body {
+  font-family: Arial, sans-serif;
+  margin-left: 50px;
+}
+
+h1 {
+  font-family: Arial, sans-serif;
+  text-align: left;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+.glavni-kontejner {
+  display: flex;
+  gap: 50px;
+}
+
+table {
+  margin-top:30px;
+  border-collapse: collapse;
+  width: 220px;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+thead tr {
+  width:200px;
+}
+
+th {
+  width:150px;
+  background-color: #f2f2f2;
+  color:grey;
+  font-weight: normal;
+  text-align: center;
+}
+
+form {
+  height:220px;
+  margin-top:30px;
+  border:1px solid black;
+  display: flex;
+  flex-direction: column;
+  padding:10px;
+}
+
+input[type="text"],
+input[type="number"] {
+  border:none;
+  border-bottom: 1px solid black;
+  padding: 5px;
+  width: 200px;
+}
+
+button {
+  cursor: pointer;
+  align-self: flex-end;
+  border-radius:10px;
+}
+
+#detalji {
+  margin-top: 30px;
+  max-width: 600px;
+}
+
+#panel-detalja p {
+  margin: 5px 0;
+}
+
+section div{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height:200px;
+  gap:20px;
+  padding:10px;
+  width:220px;
+  border:1px solid black;
+}
+
