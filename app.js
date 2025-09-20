@@ -7,10 +7,15 @@ class Artikal {
     }
 }
 
-let artikli = [
-    new Artikal(1, "Laptop", 2000, "Gejmerski laptop najnovije generacije"),
-    new Artikal(2, "TV", 650, "Smart TV sa zakrivljenim ekranom"),
-]
+let artikli = []
+let sacuvaniArtikli = localStorage.getItem("artikli")
+if (sacuvaniArtikli) {
+    let niz = JSON.parse(sacuvaniArtikli)
+    for (let i = 0; i < niz.length; i++) {
+        let a = niz[i]
+        artikli.push(new Artikal(a.id, a.naziv, a.cena, a.opis))
+    }
+}
 
 function popuniTabelu() {
     let tbody = document.querySelector("#tabela-artikala tbody")
@@ -57,7 +62,7 @@ popuniTabelu()
 
 
 let forma = document.querySelector("#forma-artikla")
-forma.addEventListener("submit", function(event) {
+forma.addEventListener("submit", function (event) {
     event.preventDefault()
 
     let formData = new FormData(forma)
@@ -94,6 +99,8 @@ forma.addEventListener("submit", function(event) {
 
     let noviArtikal = new Artikal(noviId, nazivInput, cenaInput, opisInput)
     artikli.push(noviArtikal)
+    localStorage.setItem("artikli", JSON.stringify(artikli))
+
     popuniTabelu()
 
     forma.reset()
