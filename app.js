@@ -49,7 +49,52 @@ function prikaziDetalje(artikal) {
     detaljOpis.textContent = ""
 
     detaljNaziv.textContent = artikal.naziv
-    detaljCena.textContent = artikal.cena
+    detaljCena.textContent = artikal.cena + "$"
     detaljOpis.textContent = artikal.opis
 }
 popuniTabelu()
+
+
+
+let forma = document.querySelector("#forma-artikla")
+forma.addEventListener("submit", function(event) {
+    event.preventDefault()
+
+    let formData = new FormData(forma)
+    let nazivInput = formData.get("naziv").trim()
+    let cenaInput = parseFloat(formData.get("cena"))
+    let opisInput = formData.get("opis").trim()
+
+    if (nazivInput === "" || isNaN(cenaInput) || opisInput === "") {
+        alert("Popunite sva polja!")
+        return
+    }
+
+    let postoji = false
+    for (let i = 0; i < artikli.length; i++) {
+        if (
+            artikli[i].naziv.toLowerCase() === nazivInput.toLowerCase() &&
+            artikli[i].cena === cenaInput &&
+            artikli[i].opis.toLowerCase() === opisInput.toLowerCase()
+        ) {
+            postoji = true
+            break
+        }
+    }
+    if (postoji) {
+        alert("Artikal sa istim podacima već postoji!")
+        return
+    }
+
+
+    let noviId = 1
+    if (artikli.length > 0) {
+        noviId = artikli[artikli.length - 1].id + 1
+    }
+
+    let noviArtikal = new Artikal(noviId, nazivInput, cenaInput, opisInput)
+    artikli.push(noviArtikal)
+    popuniTabelu()
+
+    forma.reset()
+})
